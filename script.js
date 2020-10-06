@@ -315,14 +315,14 @@ initScene = function () {
                     -Math.PI / 2,
                     Math.PI / 2,
                     2,
-                    200
+                    20000
                 );
                 car.wheel_fr_constraint.configureAngularMotor(
                     1,
                     -Math.PI / 2,
                     Math.PI / 2,
                     2,
-                    200
+                    20000
                 );
                 car.wheel_fl_constraint.enableAngularMotor(1);
                 car.wheel_fr_constraint.enableAngularMotor(1);
@@ -336,14 +336,14 @@ initScene = function () {
                     -Math.PI / 2,
                     Math.PI / 2,
                     -2,
-                    200
+                    50
                 );
                 car.wheel_fr_constraint.configureAngularMotor(
                     1,
                     -Math.PI / 2,
                     Math.PI / 2,
                     -2,
-                    200
+                    50
                 );
                 car.wheel_fl_constraint.enableAngularMotor(1);
                 car.wheel_fr_constraint.enableAngularMotor(1);
@@ -352,8 +352,8 @@ initScene = function () {
             case 87:
                 // ------------------------------------------------------------------
                 // Up
-                car.wheel_bl_constraint.configureAngularMotor(2, 1, 0, 75, 500);
-                car.wheel_br_constraint.configureAngularMotor(2, 1, 0, 75, 500);
+                car.wheel_bl_constraint.configureAngularMotor(2, 1, 0, 175, 50);
+                car.wheel_br_constraint.configureAngularMotor(2, 1, 0, 175, 50);
                 car.wheel_bl_constraint.enableAngularMotor(2);
                 car.wheel_br_constraint.enableAngularMotor(2);
                 break;
