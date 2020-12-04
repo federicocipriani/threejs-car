@@ -44,7 +44,7 @@ initScene = () => {
         1,
         1000
     );
-    camera.position.set(40, 30, 250);
+    camera.position.set(80, 80, 280);
     camera.lookAt(scene.position);
     scene.add(camera);
 
@@ -72,14 +72,14 @@ initScene = () => {
     ground_material = Physijs.createMaterial(
         new THREE.MeshLambertMaterial({ map: ground_texture }),
         0.9,
-        0.1
+        0.4
     );
 
     ground.plane = new Physijs.BoxMesh(
         new THREE.BoxGeometry(100, 1, 100),
         ground_material,
-        0, // mass
-        { restitution: 0.2, friction: 0.9 }
+        0 // mass
+        // { restitution: 0.2, friction: 0.9 }
     );
     ground.plane.receiveShadow = true;
     scene.add(ground.plane);
@@ -172,14 +172,14 @@ initScene = () => {
     createCar = () => {
         car_material = Physijs.createMaterial(
             new THREE.MeshLambertMaterial({ color: 0x5ab7cc }),
-            0.9,
-            1
+            0.8,
+            0.2
         );
 
         wheel_material = Physijs.createMaterial(
             new THREE.MeshLambertMaterial({ color: 0x444444 }),
-            1,
-            1
+            0.9,
+            0.6
         );
         wheel_geometry = new THREE.CylinderGeometry(2, 2, 1, 20);
         wheel_pos_fx = 20.5;
@@ -192,7 +192,7 @@ initScene = () => {
         car.body = new Physijs.BoxMesh(
             new THREE.BoxGeometry(15, 4, 7),
             car_material,
-            2000
+            3000
         );
         car.body.position.set(25, 5, 0);
         car.body.receiveShadow = car.body.castShadow = true;
@@ -202,7 +202,7 @@ initScene = () => {
         car.top_central = new Physijs.BoxMesh(
             new THREE.BoxGeometry(5, 3, 7),
             car_material,
-            50
+            500
         );
         car.top_central.position.x = 1.5;
         car.top_central.position.y = 3.5;
@@ -220,7 +220,7 @@ initScene = () => {
                 Math.PI / 2
             ),
             car_material,
-            50
+            100
         );
         car.top_front.position.x = -1;
         car.top_front.position.y = 2;
@@ -241,8 +241,8 @@ initScene = () => {
                 Math.PI
             ),
             car_material,
-            50, // mass
-            { restitution: 0.9, friction: 0.1 }
+            200 // mass
+            // { restitution: 0.9, friction: 0.1 }
         );
         car.body_front.position.x = -7.5;
         car.body_front.rotation.x = Math.PI / 2;
@@ -254,7 +254,7 @@ initScene = () => {
         car.wheel_fl = new Physijs.CylinderMesh(
             wheel_geometry,
             wheel_material,
-            20, // mass
+            500, // mass
             { restitution: 0, friction: 1 }
         );
         car.wheel_fl.rotation.x = Math.PI / 2;
@@ -283,7 +283,7 @@ initScene = () => {
         car.wheel_fr = new Physijs.CylinderMesh(
             wheel_geometry,
             wheel_material,
-            20, // mass
+            500, // mass
             { restitution: 0, friction: 1 }
         );
         car.wheel_fr.rotation.x = Math.PI / 2;
@@ -312,7 +312,7 @@ initScene = () => {
         car.wheel_bl = new Physijs.CylinderMesh(
             wheel_geometry,
             wheel_material,
-            20, // mass
+            500, // mass
             { restitution: 0, friction: 1 }
         );
         car.wheel_bl.rotation.x = Math.PI / 2;
@@ -341,7 +341,7 @@ initScene = () => {
         car.wheel_br = new Physijs.CylinderMesh(
             wheel_geometry,
             wheel_material,
-            20, // mass
+            500, // mass
             { restitution: 0, friction: 1 }
         );
         car.wheel_br.rotation.x = Math.PI / 2;
@@ -377,17 +377,17 @@ initScene = () => {
                 // Left
                 car.wheel_fl_constraint.configureAngularMotor(
                     1,
-                    -Math.PI / 8,
-                    Math.PI / 8,
-                    2,
-                    100
+                    -Math.PI / 4,
+                    Math.PI / 4,
+                    1,
+                    200
                 );
                 car.wheel_fr_constraint.configureAngularMotor(
                     1,
-                    -Math.PI / 8,
-                    Math.PI / 8,
-                    2,
-                    100
+                    -Math.PI / 4,
+                    Math.PI / 4,
+                    1,
+                    200
                 );
                 car.wheel_fl_constraint.enableAngularMotor(1);
                 car.wheel_fr_constraint.enableAngularMotor(1);
@@ -398,17 +398,17 @@ initScene = () => {
                 // Right
                 car.wheel_fl_constraint.configureAngularMotor(
                     1,
-                    -Math.PI / 8,
-                    Math.PI / 8,
-                    -2,
-                    100
+                    -Math.PI / 4,
+                    Math.PI / 4,
+                    -1,
+                    200
                 );
                 car.wheel_fr_constraint.configureAngularMotor(
                     1,
-                    -Math.PI / 8,
-                    Math.PI / 8,
-                    -2,
-                    100
+                    -Math.PI / 4,
+                    Math.PI / 4,
+                    -1,
+                    200
                 );
                 car.wheel_fl_constraint.enableAngularMotor(1);
                 car.wheel_fr_constraint.enableAngularMotor(1);
@@ -421,15 +421,15 @@ initScene = () => {
                     2,
                     1,
                     0,
-                    125,
-                    500
+                    15,
+                    3000
                 );
                 car.wheel_br_constraint.configureAngularMotor(
                     2,
                     1,
                     0,
-                    125,
-                    500
+                    15,
+                    3000
                 );
                 car.wheel_bl_constraint.enableAngularMotor(2);
                 car.wheel_br_constraint.enableAngularMotor(2);
@@ -442,15 +442,15 @@ initScene = () => {
                     2,
                     1,
                     0,
-                    -250,
-                    500
+                    -10,
+                    12000
                 );
                 car.wheel_br_constraint.configureAngularMotor(
                     2,
                     1,
                     0,
-                    -250,
-                    500
+                    -10,
+                    12000
                 );
                 car.wheel_bl_constraint.enableAngularMotor(2);
                 car.wheel_br_constraint.enableAngularMotor(2);
